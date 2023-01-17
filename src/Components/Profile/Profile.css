@@ -1,0 +1,47 @@
+.profileContainer{
+    position: absolute;
+    transform: translate(-50%, 0%);
+    left: 50%;
+}
+
+.grid-container {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 350px;
+    height: 350px;
+}
+
+.editIcon{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.userDetailsContainer{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.userDetails {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.profileImage {
+    margin-top: 15px;
+}
+
+.profileImage img {
+    border-radius: 50%;
+    width: 110px;
+}
