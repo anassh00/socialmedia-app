@@ -17,9 +17,9 @@ const NavBar = (args) => {
         <div className='navbarContainer'>
           <div className='navbarContent'>
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', fontWeight : 'bold', color : 'white', paddingRight : '50rem'}}>FakeInstagram</div>
-          <div onClick={() => routeChange('/')} style={{cursor: 'pointer', paddingRight : '12px'}}>Home</div>
-          <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', paddingRight : '12px'}}>Profile</div>
-          <div onClick={() => routeChange('/Message')} style={{cursor: 'pointer', paddingRight : '12px'}}>Message</div>
+          <div onClick={() => routeChange('/')} style={{cursor: 'pointer', marginRight : '17px'}}>Home</div>
+          <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
+          <div onClick={() => routeChange('/Message')} style={{cursor: 'pointer', marginRight : '12px'}}>Message</div>
           </div>
         </div>
     </div>
