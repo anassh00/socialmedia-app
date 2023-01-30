@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import Create from '../Create/Create';
 import './NavBar.css'
 
 const NavBar = (args) => {
@@ -12,16 +13,21 @@ const NavBar = (args) => {
     navigate(path);
   }
 
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => setModal(!modal);
+
   return (
     <div>
         <div className='navbarContainer'>
           <div className='navbarContent'>
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', fontWeight : 'bold', color : 'white', paddingRight : '50rem'}}>FakeInstagram</div>
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', marginRight : '17px'}}>Home</div>
+          <div onClick={() => toggleModal()} style={{cursor: 'pointer', marginRight : '17px'}}>Create</div>
           <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
           <div onClick={() => routeChange('/Message')} style={{cursor: 'pointer', marginRight : '12px'}}>Message</div>
           </div>
         </div>
+        <Create modal={modal} toggle={toggleModal}/>
     </div>
   )
 }
