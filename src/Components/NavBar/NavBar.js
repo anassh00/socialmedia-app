@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import authService from '../../Services/auth.service';
 import Create from '../Create/Create';
 import './NavBar.css'
 
@@ -16,6 +17,11 @@ const NavBar = (args) => {
   const [modal, setModal] = useState(false);
   const toggleModal = () => setModal(!modal);
 
+  const logOut = () => {
+    authService.logout();
+    routeChange('/Login');
+  };
+  
   return (
     <div>
         <div className='navbarContainer'>
@@ -25,6 +31,7 @@ const NavBar = (args) => {
           <div onClick={() => toggleModal()} style={{cursor: 'pointer', marginRight : '17px'}}>Create</div>
           <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
           <div onClick={() => routeChange('/Message')} style={{cursor: 'pointer', marginRight : '12px'}}>Message</div>
+          <div onClick={() => logOut()} style={{cursor: 'pointer', marginRight : '12px'}}>Logout</div>
           </div>
         </div>
         <Create modal={modal} toggle={toggleModal}/>
