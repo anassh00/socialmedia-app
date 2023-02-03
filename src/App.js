@@ -10,6 +10,7 @@ import Message from './Components/Message/Message';
 
 function App() {
   return (
+    <div>
     <Routes>
       <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}/>
       <Route path="/Profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
@@ -19,6 +20,7 @@ function App() {
       <Route path="/Register" element={<Register/>} />
       <Route path="*" exact={true} element={<Navigate replace to="/"/>} />
     </Routes>
+    </div>
   );
 }
 

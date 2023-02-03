@@ -38,12 +38,12 @@ const Register = () => {
 
   return (
     <div className='registerContainer'>
+      <div style={{ fontWeight: 'bold', color: 'white', fontSize: "40px", textAlign : "center", marginTop : "40px" }}>FakeInstagram</div>
       <Form className='registerForm'>
-        <h3>Register Here</h3>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="firstname">Image</Label>
           <Input type="text" placeholder="Email or Phone" id="firstname"></Input>
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Label for="lastname">Email</Label>
           <Input onChange={handleChangeEmail} type="text" placeholder="Email" id="email"></Input>
@@ -56,9 +56,9 @@ const Register = () => {
           <Label for="password">Password</Label>
           <Input onChange={handleChangePassword} type="password" placeholder="Password" id="password"></Input>
         </FormGroup>
-        <Button onClick={handleSubmit}>Register</Button>
+        <Button style={{marginBottom : "10px"}} onClick={handleSubmit}>Register</Button>
         <br></br>
-        <Link to='/Login'>Have account ? Login</Link>
+        <Link style={{color : "white"}} to='/Login'>Have account ? Login</Link>
       </Form>
     </div>
   )

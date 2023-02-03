@@ -7,8 +7,8 @@ import authService from '../../Services/auth.service';
 
 const Login = () => {
 
-    const [username, setUsername] = useState(""); 
-    const [password, setPassword] = useState(""); 
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const currentUser = authService.getCurrentUser();
 
@@ -20,9 +20,9 @@ const Login = () => {
         setPassword(event.target.value)
     }
 
-    let navigate = useNavigate(); 
-    const routeChange = (path) =>{ 
-      navigate(path);
+    let navigate = useNavigate();
+    const routeChange = (path) => {
+        navigate(path);
     }
 
     const handleLogin = () => {
@@ -38,8 +38,8 @@ const Login = () => {
     return !currentUser ?
         <div>
             <div className='divContainer'>
+                <div style={{ fontWeight: 'bold', color: 'white', fontSize: "40px", textAlign : "center", marginTop : "40px" }}>FakeInstagram</div>
                 <Form className='loginForm'>
-                    <h3>Login</h3>
                     <FormGroup>
                         <Label for="exampleEmail">Username</Label>
                         <Input
@@ -60,9 +60,9 @@ const Login = () => {
                             onChange={handleChangePassword}
                         />
                     </FormGroup>
-                    <Button onClick={handleLogin}>Submit</Button>
+                    <Button style={{marginBottom : "10px"}} onClick={handleLogin}>Login</Button>
                     <br></br>
-                    <Link style={{ color: 'black' }} to='/Register'>Create account</Link>
+                    <Link style={{ color: 'white' }} to='/Register'>Create account</Link>
                 </Form>
             </div>
         </div>

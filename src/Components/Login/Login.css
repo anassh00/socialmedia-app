@@ -10,7 +10,8 @@
 } */
 
 .divContainer{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(18, 18, 18);
+    color: white;
     width: 430px;
     height: 420px;
     position: absolute;
@@ -22,5 +23,9 @@
 }
 
 .loginForm {
+    background-color: rgb(18, 18, 18);
+    color: white;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
 }

@@ -26,7 +26,7 @@ const NavBar = (args) => {
     <div>
         <div className='navbarContainer'>
           <div className='navbarContent'>
-          <div onClick={() => routeChange('/')} style={{cursor: 'pointer', fontWeight : 'bold', color : 'white', paddingRight : '50rem'}}>FakeInstagram</div>
+          <div onClick={() => routeChange('/')} style={{cursor: 'pointer', fontWeight : 'bold', color : 'white', paddingRight : '44rem'}}>FakeInstagram</div>
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', marginRight : '17px'}}>Home</div>
           <div onClick={() => toggleModal()} style={{cursor: 'pointer', marginRight : '17px'}}>Create</div>
           <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
