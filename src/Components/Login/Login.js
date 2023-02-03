@@ -28,7 +28,7 @@ const Login = () => {
     const handleLogin = () => {
         authService.login(username, password).then(
             () => {
-                routeChange('/Profile')
+                routeChange('/')
             }, error => {
                 console.log("auth failed")
             }
