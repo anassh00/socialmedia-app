@@ -21,11 +21,12 @@ class PostService {
           });
     }
 
-    savePost(description,image) {
+    savePost(description,image,user_id) {
       return axios
       .post(API_URL + "posts/create", {
         description,
-        image
+        image,
+        user_id
       })
       .then(response => {
         if (response.data.token) {
@@ -45,6 +46,14 @@ class PostService {
         return Array.from(response.data["hydra:member"]);
       });
     }
+
+    async getUserPosts(id){
+      return axios.get(API_URL + "post/user/" + id).then(response => {
+        console.log(response.data)
+        return Array.from(response.data);
+      });
+    }
+    
 }
 
 export default new PostService();

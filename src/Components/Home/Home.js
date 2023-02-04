@@ -11,12 +11,18 @@ const Home = () => {
   const [modal, setModal] = useState(false);
   const [posts, setPosts] = useState([]);
   const authed = authService.getCurrentUser();
+  const [user, setUser] = useState({
+    description : "",
+    email : ""
+  });
 
   useEffect(() => {
     const dataFetch = async () => {
       let postsFetched = await postService.getPost();
-
+      let userDataFetched = await authService.getUserById(authed.data.username)
       // set state when the data received
+      console.log("user",userDataFetched)
+      setUser(userDataFetched[0]);
       setPosts(postsFetched);
     };
     
@@ -55,14 +61,14 @@ const Home = () => {
             }}
           >
             <CardBody>
-              <div onClick={() => routeChange('/Profile')} style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}>
+              <div onClick={() => routeChange('/Profile/'+authed.data.username)} style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}>
                 <div className='profileImageCard'>
-                  <img src="https://i.imgur.com/HAL10fll.png" alt="" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
                 </div>
                 <div>{authed.data.username}</div>
               </div>
               <CardText>
-                {authed.data.email}
+                {user.email}
               </CardText>
             </CardBody>
           </Card>

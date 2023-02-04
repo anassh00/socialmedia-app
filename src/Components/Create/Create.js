@@ -25,8 +25,9 @@ const Create = ({ modal, toggle }) => {
         try{
             console.log("submit !");
             let uploadfile = await postService.uploadfile(file);
-            let uploadPost = await postService.savePost(description,uploadfile);
+            let uploadPost = await postService.savePost(description,uploadfile,authed.data.username);
             handleToggle();
+            window.location.reload(false);
         }catch (e) {
             console.error(e);
         }
@@ -38,7 +39,7 @@ const Create = ({ modal, toggle }) => {
                 <ModalHeader toggle={handleToggle}>
                     <div style={{ display: 'flex' }}>
                         <div className='profileImageCard'>
-                            <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
                         </div>
                         {authed.data.username}
                     </div>

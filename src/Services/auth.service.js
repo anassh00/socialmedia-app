@@ -30,6 +30,20 @@ class AuthService {
     });
   }
 
+  update = async (email, description) => {
+    return axios.put(API_URL + "api/users/"+ JSON.parse(localStorage.getItem('user')).data.id, {
+      email,
+      description
+    });
+  }
+
+  getUserById = async (id) => {
+    return axios.get(API_URL + "userInfo/" + id).then(response => {
+      console.log(response.data)
+      return response.data;
+    });
+  }
+
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }

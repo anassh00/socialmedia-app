@@ -1,60 +1,106 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useFetcher, useLocation, useNavigate, useParams } from 'react-router-dom'
 import authService from '../../Services/auth.service'
+import postService from '../../Services/post.service'
 import NavBar from '../NavBar/NavBar'
 import './Profile.css'
 
 const Profile = () => {
   const authed = authService.getCurrentUser();
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/Edit`; 
+  let { id } = useParams();
+
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState({
+    description : "",
+    email : ""
+  });
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/Edit`;
     navigate(path);
   }
+
+  const API_URL = "http://localhost:8000/";
+
+  const checkIsVideo = (file) => {
+    let ext = file.split('.').pop();
+    if (ext == "mp4") {
+      return true;
+    }
+    return false;
+  }
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      let postsFetched = await postService.getUserPosts(id ? id : authed.data.username);
+      let userDataFetched = await authService.getUserById(id ? id : authed.data.username)
+      // set state when the data received
+      console.log("user",userDataFetched)
+      setUser(userDataFetched[0]);
+      setPosts(postsFetched);
+    };
+
+    dataFetch();
+  }, [])
 
   return (
     <div>
       <NavBar></NavBar>
-      <div className='profileContainer'>
       <div className='userDetailsContainer'>
-        <div style={{display : 'flex'}}>
-          <div className='profileImage'>
-            <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt=""/>
-          </div>
-          <div className='userDetails'>
-            <div>
-              <div style={{display : "flex"}}>
-                <div>
-                  <h4>{authed.data.username}</h4>
-                </div>
-                <div style={{marginLeft : "10px", marginTop : "2px"}} onClick={routeChange}>
-                  <img className='editIcon' src="/Ic_settings_48px.svg.png" alt=""/>
-                </div>
-              </div>
-              <div className='followersContainer'>
-                {authed.data.email}
-                <br></br>
-                {authed.data.description}
-              </div>
+          <div style={{ display: 'flex' }}>
+            <div className='profileImage'>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
             </div>
-            {/* <div>
+            <div className='userDetails'>
+              <div>
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <h4>{id ? id : authed.data.username}</h4>
+                  </div>
+                  <div style={{ marginLeft: "10px", marginTop: "2px" }} onClick={routeChange}>
+                    {(id === authed.data.username) && <img className='editIcon' src="/Ic_settings_48px.svg.png" alt="" />}
+                  </div>
+                </div>
+                <div className='followersContainer'>
+                  {user.email}
+                  <br></br>
+                  {user.description}
+                </div>
+              </div>
+              {/* <div>
                 <p><span>Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
             </div> */}
+            </div>
           </div>
         </div>
+      <div className='profileContainer'>
+        
+        { posts.length > 0 ? 
+        <div class="grid-container">
+        {
+          Array.from(posts).reverse().map((post) => {
+            return (<div class="grid-item">
+              {!checkIsVideo(post.filename) && post.filename ?
+                <img style={{ width: "100%", margin: "0 auto" }} src={API_URL + "media/" + post.filename} />
+                :
+                <div></div>
+              }
+              {checkIsVideo(post.filename) && post.filename ?
+                <video width="100%" height="100%" controls >
+                  <source src={API_URL + "media/" + post.filename} type="video/mp4" />
+                </video>
+                :
+                <div></div>
+              }
+            </div>)
+          })
+        }
       </div>
-      <div class="grid-container">
-          <div class="grid-item"><img style={{width : '100%', height : '100%'}} src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt=""/></div>
-          <div class="grid-item"><img style={{width : '100%', height : '100%'}} src="https://media.istockphoto.com/id/1340642632/photo/sunflowers.jpg?b=1&s=170667a&w=0&k=20&c=9Ug32UnodYNOr9DGuLwVRk1WExt3D10xZjMe4ujgwp8=" alt=""/></div>
-          <div class="grid-item">3</div>  
-          <div class="grid-item">4</div>
-          <div class="grid-item">5</div>
-          <div class="grid-item">6</div>  
-          <div class="grid-item">7</div>
-          <div class="grid-item">8</div>
-          <div class="grid-item">9</div>  
-        </div>
-        </div>
+        : 
+      <h2 style={{marginTop : "100px"}}>Pas de publication encore disponible</h2>
+        }
+      </div>
     </div>
   )
 }

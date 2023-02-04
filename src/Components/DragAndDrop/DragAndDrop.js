@@ -59,7 +59,7 @@ const DragAndDrop = ({ setFile, file }) => {
                     </div>
                 }
                 {!previewUrl &&
-                    <p>Click to select or Drag and drop image or mp4 here </p>
+                    <p>Click to select or Drag and drop image or video mp4 here </p>
                 }
                 <input
                     type="file"

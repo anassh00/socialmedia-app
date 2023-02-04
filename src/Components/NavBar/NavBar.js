@@ -6,6 +6,7 @@ import './NavBar.css'
 
 const NavBar = (args) => {
   const [isOpen, setIsOpen] = useState(false);
+  const authed = authService.getCurrentUser();
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -29,7 +30,7 @@ const NavBar = (args) => {
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', fontWeight : 'bold', color : 'white', paddingRight : '44rem'}}>FakeInstagram</div>
           <div onClick={() => routeChange('/')} style={{cursor: 'pointer', marginRight : '17px'}}>Home</div>
           <div onClick={() => toggleModal()} style={{cursor: 'pointer', marginRight : '17px'}}>Create</div>
-          <div onClick={() => routeChange('/Profile')} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
+          <div onClick={() => routeChange('/Profile/'+authed.data.username)} style={{cursor: 'pointer', marginRight : '17px'}}>Profile</div>
           <div onClick={() => routeChange('/Message')} style={{cursor: 'pointer', marginRight : '12px'}}>Message</div>
           <div onClick={() => logOut()} style={{cursor: 'pointer', marginRight : '12px'}}>Logout</div>
           </div>

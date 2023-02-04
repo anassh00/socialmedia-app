@@ -26,7 +26,10 @@
 }
 
 .userDetailsContainer{
-    margin-left: 250px;
+    position: relative;
+    transform: translate(-50%, 0%);
+    left: 85%;
+    /* margin-left: 250px; */
     padding-top: 50px;
     display: flex;
     justify-content: flex-start; 
