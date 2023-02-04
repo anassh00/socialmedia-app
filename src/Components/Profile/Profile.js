@@ -3,6 +3,7 @@ import { Link, useFetcher, useLocation, useNavigate, useParams } from 'react-rou
 import authService from '../../Services/auth.service'
 import postService from '../../Services/post.service'
 import NavBar from '../NavBar/NavBar'
+import ReactLoading from "react-loading";
 import './Profile.css'
 
 const Profile = () => {
@@ -10,6 +11,7 @@ const Profile = () => {
   let { id } = useParams();
 
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({
     description : "",
     email : ""
@@ -39,6 +41,7 @@ const Profile = () => {
       console.log("user",userDataFetched)
       setUser(userDataFetched[0]);
       setPosts(postsFetched);
+      setLoading(false)
     };
 
     dataFetch();
@@ -47,6 +50,7 @@ const Profile = () => {
   return (
     <div>
       <NavBar></NavBar>
+      {loading && <ReactLoading type={"spinningBubbles"} color="#000000" className='spinner'/>}
       <div className='userDetailsContainer'>
           <div style={{ display: 'flex' }}>
             <div className='profileImage'>

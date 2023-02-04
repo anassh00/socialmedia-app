@@ -3,11 +3,14 @@ import NavBar from '../NavBar/NavBar'
 import { Form, FormGroup, FormText, Label, Input, Button } from 'reactstrap'; 
 import authService from '../../Services/auth.service';
 import { useNavigate } from 'react-router-dom';
+import ReactLoading from "react-loading";
 
 const EditForm = () => {
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const [user, setUser] = useState({
     description : "",
     email : ""
@@ -20,6 +23,7 @@ const EditForm = () => {
       // set state when the data received
       console.log("user",userDataFetched)
       setUser(userDataFetched[0]);
+      setLoading(false);
     };
 
     dataFetch();
@@ -55,6 +59,7 @@ const EditForm = () => {
   return (
     <div>
       <NavBar></NavBar>
+      {loading && <ReactLoading type={"spinningBubbles"} color="#000000" className='spinner'/>}
       <div style={{paddingLeft : "180px", paddingRight : "180px", paddingTop : "30px"}}>
       <Form>
         {/* <FormGroup>
