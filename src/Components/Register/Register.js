@@ -40,10 +40,6 @@ const Register = () => {
     <div className='registerContainer'>
       <div style={{ fontWeight: 'bold', color: 'white', fontSize: "40px", textAlign : "center", marginTop : "40px" }}>FakeInstagram</div>
       <Form className='registerForm'>
-        {/* <FormGroup>
-          <Label for="firstname">Image</Label>
-          <Input type="text" placeholder="Email or Phone" id="firstname"></Input>
-        </FormGroup> */}
         <FormGroup>
           <Label for="lastname">Email</Label>
           <Input onChange={handleChangeEmail} type="text" placeholder="Email" id="email"></Input>

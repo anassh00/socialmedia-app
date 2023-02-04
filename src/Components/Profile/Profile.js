@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import authService from '../../Services/auth.service'
 import NavBar from '../NavBar/NavBar'
 import './Profile.css'
 
 const Profile = () => {
+  const authed = authService.getCurrentUser();
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = `/Edit`; 
@@ -23,21 +25,21 @@ const Profile = () => {
             <div>
               <div style={{display : "flex"}}>
                 <div>
-                  <h4>janedoe_</h4>
+                  <h4>{authed.data.username}</h4>
                 </div>
                 <div style={{marginLeft : "10px", marginTop : "2px"}} onClick={routeChange}>
                   <img className='editIcon' src="/Ic_settings_48px.svg.png" alt=""/>
                 </div>
               </div>
               <div className='followersContainer'>
-                  <span>164</span> posts
-                  <span>188</span> followers
-                  <span>206</span> following
+                {authed.data.email}
+                <br></br>
+                {authed.data.description}
               </div>
             </div>
-            <div>
+            {/* <div>
                 <p><span>Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

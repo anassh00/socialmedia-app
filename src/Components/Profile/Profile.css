@@ -26,9 +26,10 @@
 }
 
 .userDetailsContainer{
+    margin-left: 250px;
     padding-top: 50px;
     display: flex;
-    justify-content: center; 
+    justify-content: flex-start; 
     align-items: center;
 }
 
