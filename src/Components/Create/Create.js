@@ -12,8 +12,13 @@ const Create = ({ modal, toggle }) => {
     const authed = authService.getCurrentUser();
     const [description, setDescription] = useState("");
 
-    const handleChangeDescription= (event) => {
+    const handleChangeDescription = (event) => {
       setDescription(event.target.value);
+    }
+
+    const handleToggle = () => {
+        toggle();
+        setFile(null);
     }
 
     async function  handleSubmit () {
@@ -21,7 +26,7 @@ const Create = ({ modal, toggle }) => {
             console.log("submit !");
             let uploadfile = await postService.uploadfile(file);
             let uploadPost = await postService.savePost(description,uploadfile);
-            toggle();
+            handleToggle();
         }catch (e) {
             console.error(e);
         }
@@ -29,8 +34,8 @@ const Create = ({ modal, toggle }) => {
 
     return (
         <div>
-            <Modal size='lg' isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>
+            <Modal size='lg' isOpen={modal} toggle={handleToggle}>
+                <ModalHeader toggle={handleToggle}>
                     <div style={{ display: 'flex' }}>
                         <div className='profileImageCard'>
                             <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="" />
@@ -39,7 +44,7 @@ const Create = ({ modal, toggle }) => {
                     </div>
                 </ModalHeader>
                 <ModalBody>
-                    <DragAndDrop setFile={setFile} ></DragAndDrop>
+                    <DragAndDrop setFile={setFile} file={file}></DragAndDrop>
                     <div>
                         <div>
                             <FormGroup style={{ display: "flex", flexDirection: "column", marginBottom : "20px", width : "725px"}}>

@@ -33,15 +33,15 @@ const PostCard = ({ commentFct, post }) => {
                     </div>
                 </CardHeader>
                 <CardBody>
-                    {!checkIsVideo(post.filename) && post.filename?
+                    {!checkIsVideo(post.filename) && post.filename ?
                         <img style={{ width: "100%", height: "100%", margin: "0 auto" }} src={API_URL + "media/" + post.filename} />
                         :
                         <div></div>
                     }
-                    {checkIsVideo(post.filename) && post.filename?
-                                                <video width="100%" height="100%" controls >
-                                                <source src={API_URL + "media/" + post.filename} type="video/mp4" />
-                                            </video>
+                    {checkIsVideo(post.filename) && post.filename ?
+                        <video width="100%" height="100%" controls >
+                            <source src={API_URL + "media/" + post.filename} type="video/mp4" />
+                        </video>
                         :
                         <div></div>
                     }
