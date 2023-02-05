@@ -35,7 +35,7 @@ class AuthService {
     return axios.put(API_URL + "api/users/"+ JSON.parse(localStorage.getItem('user')).data.id, {
       email,
       description
-    }, { headers: {"Authorization" : `bearer ${authHeader()}`} });
+    }, { headers: {"Authorization" : authHeader()} });
   }
 
   uploadfile(file) {
@@ -44,7 +44,7 @@ class AuthService {
     data.append('file', file);
 
     return axios
-      .post(API_URL + "api/media_objects",data, { headers: {"Authorization" : `bearer ${authHeader()}`} })
+      .post(API_URL + "api/media_objects",data, { headers: {"Authorization" : authHeader()} })
       .then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -59,11 +59,11 @@ class AuthService {
       email,
       description,
       filename
-    }, { headers: {"Authorization" : `bearer ${authHeader()}`} });
+    }, { headers: {"Authorization" : authHeader()} });
   }
 
   getUserById = async (id) => {
-    return axios.get(API_URL + "userInfo/" + id,{ headers: {"Authorization" : `bearer ${authHeader()}`} }).then(response => {
+    return axios.get(API_URL + "userInfo/" + id,{ headers: {"Authorization" : authHeader()} }).then(response => {
       console.log(response.data)
       return response.data;
     });

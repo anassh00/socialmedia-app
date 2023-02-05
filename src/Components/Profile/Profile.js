@@ -5,13 +5,16 @@ import postService from '../../Services/post.service'
 import NavBar from '../NavBar/NavBar'
 import ReactLoading from "react-loading";
 import './Profile.css'
+import Post from '../Post/Post'
 
 const Profile = () => {
   const authed = authService.getCurrentUser();
   let { id } = useParams();
-
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [postDesc, setPostDesc] = useState("");
+  const [postFileName, setPostFileName] = useState("");
   const [user, setUser] = useState({
     description : "",
     email : ""
@@ -21,6 +24,15 @@ const Profile = () => {
   const routeChange = () => {
     let path = `/Edit`;
     navigate(path);
+  }
+  const toggle = (desc,name) => {
+    setModal(!modal)
+    setPostDesc(desc);
+    setPostFileName(name);
+  };
+
+  const close = () => {
+    setModal(!modal)
   }
 
   const API_URL = "http://localhost:8000/";
@@ -50,6 +62,7 @@ const Profile = () => {
   return (
     <div>
       <NavBar></NavBar>
+      <Post close={close} modal={modal} toggle={toggle} desc={postDesc} filename={postFileName}/>
       {loading && <ReactLoading type={"spinningBubbles"} color="#000000" className='spinner'/>}
       <div className='userDetailsContainer'>
           <div style={{ display: 'flex' }}>
@@ -84,9 +97,9 @@ const Profile = () => {
         <div class="grid-container">
         {
           Array.from(posts).reverse().map((post) => {
-            return (<div class="grid-item">
+            return (<div onClick={()=>toggle(post.description,post.filename)} style={{cursor : 'pointer'}}class="grid-item">
               {!checkIsVideo(post.filename) && post.filename ?
-                <img style={{ width: "100%", margin: "0 auto" }} src={API_URL + "media/" + post.filename} />
+                <img style={{ width: "100%", height: "100%", margin: "0 auto" }} src={API_URL + "media/" + post.filename} />
                 :
                 <div></div>
               }
