@@ -6,6 +6,7 @@ import NavBar from '../NavBar/NavBar'
 import ReactLoading from "react-loading";
 import './Profile.css'
 import Post from '../Post/Post'
+import editIcon from './Ic_settings_48px.svg.png'
 
 const Profile = () => {
   const authed = authService.getCurrentUser();
@@ -76,7 +77,7 @@ const Profile = () => {
                     <h4>{id ? id : authed.data.username}</h4>
                   </div>
                   <div style={{ marginLeft: "10px", marginTop: "2px" }} onClick={routeChange}>
-                    {(id === authed.data.username) && <img className='editIcon' src="/Ic_settings_48px.svg.png" alt="" />}
+                    {(id === authed.data.username) && <img className='editIcon' src={editIcon} alt="" />}
                   </div>
                 </div>
                 <div className='followersContainer'>
