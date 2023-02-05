@@ -59,7 +59,7 @@ const Create = ({ modal, toggle }) => {
                                     style={{marginBottom : "20px", marginLeft : "20px"}}
                                     onChange={handleChangeDescription}
                                 />
-                                <Button onClick={handleSubmit} style={{marginLeft : "20px", width : "100%"}}>Share</Button>
+                                <Button onClick={handleSubmit} style={{marginLeft : "20px", width : "100%"}}>Partager</Button>
                             </FormGroup>
                         </div>
                     </div>

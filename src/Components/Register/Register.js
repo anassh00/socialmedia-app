@@ -49,12 +49,12 @@ const Register = () => {
           <Input onChange={handleChangeUsername} type="text" placeholder="Username" id="username"></Input>
         </FormGroup>
         <FormGroup>
-          <Label for="password">Password</Label>
+          <Label for="password">Mot de passe</Label>
           <Input onChange={handleChangePassword} type="password" placeholder="Password" id="password"></Input>
         </FormGroup>
-        <Button style={{marginBottom : "10px"}} onClick={handleSubmit}>Register</Button>
+        <Button style={{marginBottom : "10px"}} onClick={handleSubmit}>Inscription</Button>
         <br></br>
-        <Link style={{color : "white"}} to='/Login'>Have account ? Login</Link>
+        <Link style={{color : "white"}} to='/Login'>Avez-vous déjà un compte ? Connecter</Link>
       </Form>
     </div>
   )

@@ -151,7 +151,7 @@ const EditForm = () => {
             />
           </FormGroup>
           <Button onClick={handleEdit}>
-            Submit
+            Enregistrer
           </Button>
         </Form>
       </div>

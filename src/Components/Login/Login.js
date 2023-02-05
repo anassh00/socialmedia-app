@@ -51,7 +51,7 @@ const Login = () => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="examplePassword">Password</Label>
+                        <Label for="examplePassword">Mot de passe</Label>
                         <Input
                             type="password"
                             name="password"
@@ -60,9 +60,9 @@ const Login = () => {
                             onChange={handleChangePassword}
                         />
                     </FormGroup>
-                    <Button style={{marginBottom : "10px"}} onClick={handleLogin}>Login</Button>
+                    <Button style={{marginBottom : "10px"}} onClick={handleLogin}>Connecter</Button>
                     <br></br>
-                    <Link style={{ color: 'white' }} to='/Register'>Create account</Link>
+                    <Link style={{ color: 'white' }} to='/Register'>Créer un compte</Link>
                 </Form>
             </div>
         </div>
