@@ -14,7 +14,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const authed = authService.getCurrentUser();
   const [loading, setLoading] = useState(true);
-  const API_URL = "http://localhost:8000/";
+  const API_URL = "https://symfony-backend.herokuapp.com/";
 
   const [user, setUser] = useState({
     description : "",

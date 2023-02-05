@@ -35,7 +35,7 @@ const Profile = () => {
     setModal(!modal)
   }
 
-  const API_URL = "http://localhost:8000/";
+  const API_URL = "https://symfony-backend.herokuapp.com/";
 
   const checkIsVideo = (file) => {
     let ext = file.split('.').pop();

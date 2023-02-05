@@ -4,7 +4,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BiCommentDetail } from 'react-icons/bi';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const API_URL = "http://localhost:8000/";
+const API_URL = "https://symfony-backend.herokuapp.com/";
 
 const Post = ({ modal, close, desc, filename }) => {
     return (

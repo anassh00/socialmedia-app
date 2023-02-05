@@ -6,7 +6,7 @@ import { BiCommentDetail } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../Services/auth.service';
 
-const API_URL = "http://localhost:8000/";
+const API_URL = "https://symfony-backend.herokuapp.com/";
 
 const PostCard = ({ commentFct, post }) => {
 

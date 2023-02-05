@@ -20,7 +20,7 @@ const EditForm = () => {
     email: ""
   });
   const authed = authService.getCurrentUser();
-  const API_URL = "http://localhost:8000/";
+  const API_URL = "https://symfony-backend.herokuapp.com/";
 
   useEffect(() => {
     const dataFetch = async () => {
