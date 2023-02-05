@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardFooter, CardHeader, CardText, CardTitle } from 'reactstrap'
 import './PostCard.css';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiCommentDetail } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import authService from '../../Services/auth.service';
 
 const API_URL = "http://localhost:8000/";
 
@@ -17,10 +18,27 @@ const PostCard = ({ commentFct, post }) => {
         return false;
     }
 
-    let navigate = useNavigate(); 
-    const routeChange = (path) =>{ 
-      navigate(path);
+    const [user, setUser] = useState({
+        description : "",
+        email : ""
+      });
+
+    let navigate = useNavigate();
+    const routeChange = (path) => {
+        navigate(path);
     }
+
+    useEffect(() => {
+        const dataFetch = async () => {
+            if (post.userId) {
+                let userDataFetched = await authService.getUserById(post.userId)
+                console.log("user", userDataFetched)
+                setUser(userDataFetched[0]);
+            }
+        };
+
+        dataFetch();
+    }, [])
 
     return (
         <div style={{ marginBottom: "20px" }}>
@@ -31,10 +49,10 @@ const PostCard = ({ commentFct, post }) => {
                 }}
             >
                 <CardHeader>
-                    <div style={{ display: 'flex', cursor : 'pointer'}} onClick={() => routeChange('/Profile/'+post.userId)}>
-                        <div className='profileImageCard'>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
-                        </div>
+                    <div style={{ display: 'flex', cursor: 'pointer' }} onClick={() => routeChange('/Profile/' + post.userId)}>
+                    <div className='profileImageCard'>
+                  <img src={user.filename ? API_URL+"media/"+user.filename : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}  alt="" />
+                </div>
                         {post.userId}
                     </div>
                 </CardHeader>

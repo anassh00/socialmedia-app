@@ -19,7 +19,6 @@ const DragAndDrop = ({ setFile, file }) => {
     
 
     const handleFile = file => {
-        //you can carry out any file validations here...
         setImage(file);
         setFile(file);
         setFileExt(file.name.split('.').pop());

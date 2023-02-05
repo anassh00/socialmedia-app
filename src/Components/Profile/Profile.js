@@ -54,8 +54,8 @@ const Profile = () => {
       <div className='userDetailsContainer'>
           <div style={{ display: 'flex' }}>
             <div className='profileImage'>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
-            </div>
+                  <img src={user.filename ? API_URL+"media/"+user.filename : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}  alt="" />
+                </div>
             <div className='userDetails'>
               <div>
                 <div style={{ display: "flex" }}>
@@ -67,9 +67,9 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className='followersContainer'>
-                  {user.email}
+                  Email : {user.email}
                   <br></br>
-                  {user.description}
+                  Description : {user.description}
                 </div>
               </div>
               {/* <div>
@@ -102,7 +102,7 @@ const Profile = () => {
         }
       </div>
         : 
-      <h2 style={{marginTop : "100px"}}>Pas de publication encore disponible</h2>
+      <h2 style={{marginTop : "140px"}}>Pas de publication encore disponible</h2>
         }
       </div>
     </div>

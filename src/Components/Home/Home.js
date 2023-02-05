@@ -14,6 +14,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const authed = authService.getCurrentUser();
   const [loading, setLoading] = useState(true);
+  const API_URL = "http://localhost:8000/";
 
   const [user, setUser] = useState({
     description : "",
@@ -63,7 +64,7 @@ const Home = () => {
             <CardBody>
               <div onClick={() => routeChange('/Profile/'+authed.data.username)} style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}>
                 <div className='profileImageCard'>
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
+                  <img src={user.filename ? API_URL+"media/"+user.filename : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}  alt="" />
                 </div>
                 <div>{authed.data.username}</div>
               </div>

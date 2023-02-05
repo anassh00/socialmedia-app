@@ -1,8 +1,9 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8000/";
 
-const config = {headers: { 'content-type': 'multipart/form-data' }}
+const config = {headers: { 'content-type': 'multipart/form-data',"Authorization" : `bearer ${authHeader()}` }}
 
 class PostService {
     uploadfile(file) {
@@ -11,12 +12,11 @@ class PostService {
         data.append('file', file);
 
         return axios
-          .post(API_URL + "api/media_objects",data)
+          .post(API_URL + "api/media_objects",data,config)
           .then(response => {
             if (response.data.token) {
               localStorage.setItem("user", JSON.stringify(response.data));
             }
-    
             return response.data["@id"];
           });
     }
@@ -27,7 +27,7 @@ class PostService {
         description,
         image,
         user_id
-      })
+      },{ headers: {"Authorization" : `bearer ${authHeader()}`} })
       .then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -38,7 +38,7 @@ class PostService {
     }
 
     async getPost(){
-      return axios.get(API_URL + "api/posts").then(response => {
+      return axios.get(API_URL + "api/posts",{ headers: {"Authorization" : `bearer ${authHeader()}`} }).then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
@@ -48,7 +48,7 @@ class PostService {
     }
 
     async getUserPosts(id){
-      return axios.get(API_URL + "post/user/" + id).then(response => {
+      return axios.get(API_URL + "post/user/" + id,{ headers: {"Authorization" : `bearer ${authHeader()}`} }).then(response => {
         console.log(response.data)
         return Array.from(response.data);
       });

@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8000/";
 
@@ -34,11 +35,35 @@ class AuthService {
     return axios.put(API_URL + "api/users/"+ JSON.parse(localStorage.getItem('user')).data.id, {
       email,
       description
-    });
+    }, { headers: {"Authorization" : `bearer ${authHeader()}`} });
+  }
+
+  uploadfile(file) {
+    let data = new FormData();
+    console.log(file + ' ' + 'this is file pathname')
+    data.append('file', file);
+
+    return axios
+      .post(API_URL + "api/media_objects",data, { headers: {"Authorization" : `bearer ${authHeader()}`} })
+      .then(response => {
+        if (response.data.token) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+
+        return response.data["contentUrl"].split("/")[2];
+      });
+  }
+
+  updateWithImage = async (email, description ,filename) => {
+    return axios.put(API_URL + "api/users/"+ JSON.parse(localStorage.getItem('user')).data.id, {
+      email,
+      description,
+      filename
+    }, { headers: {"Authorization" : `bearer ${authHeader()}`} });
   }
 
   getUserById = async (id) => {
-    return axios.get(API_URL + "userInfo/" + id).then(response => {
+    return axios.get(API_URL + "userInfo/" + id,{ headers: {"Authorization" : `bearer ${authHeader()}`} }).then(response => {
       console.log(response.data)
       return response.data;
     });
